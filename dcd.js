@@ -47,12 +47,12 @@ DCD.read=function(url,that,fun){
 //dcd = new DCD('sample_trajectory_file.dcd')
 //console.log(dcd)
 
-// if dcd file being passed as the hash
+// if dcd file being passed as the search
 
-if(location.hash.length>0){
+if(location.search.length>0){
     (function(){
         var parm={}
-        location.hash.slice(1).split('&').map(function(hh){
+        location.search.slice(1).split('&').map(function(hh){
             var av=[]
             hh.split('=').map(function(x){
                 av.push(x)
