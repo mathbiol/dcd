@@ -64,7 +64,7 @@ if(location.hash.length>0){
             dcd = new DCD(parm.dcdUrl,function(){
                 console.log(dcd.xyz)
                 var div = document.getElementById('dcdDiv')
-                div.innerHTML='<h3>the first 1000 ...</h3>' // reset div
+                div.innerHTML='<h3 style="color:navy">parsing <a href="'+dcd.url+'" target="_blank">'+dcd.url+'</a> the first 1000 ... <a href="https://github.com/mathbiol/dcd" target="_blank"> <i class="fa fa-github-alt" aria-hidden="true"></i> </a></h3>' // reset div
                 if(div){
                     tb = document.createElement('table')
                     tb.className="table table-striped"
