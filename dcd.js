@@ -16,7 +16,9 @@ DCD.read=function(url,that,fun){
         xhr.onload = function(e) {
           if (this.status == 200) {
             // get binary data as a response
+            //var responseArray = new Float32Array(this.response)
             var responseArray = new Uint32Array(this.response)
+            //var responseArray = new Uint8Array(this.response)
             DCD.read(responseArray,that,fun)
           }
         };
@@ -33,6 +35,21 @@ DCD.read=function(url,that,fun){
         // NAMD uses a trivial double-precision binary file format for coordinates, velocities, and forces. Due to its high precision this is the default output and restart format. VMD refers to these files as the ``namdbin'' format. The file consists of the atom count as a 32-bit integer followed by all three position or velocity components for each atom as 64-bit double-precision floating point, i.e., NXYZXYZXYZXYZ... where N is a 4-byte int and X, Y, and Z are 8-byte doubles. If the number of atoms the file contains is known then the atom count can be used to determine endianness. The file readers in NAMD and VMD can detect and adapt to the endianness of the machine on which the binary file was written, and the utility program flipbinpdb is also provided to reformat these files if needed. Positions in NAMD binary files are stored in Å. Velocities in NAMD binary files are stored in NAMD internal units and must be multiplied by PDBVELFACTOR=20.45482706 to convert to Å/ps. Forces in NAMD binary files are stored in kcal/mol/Å.
         
         var xyz=[[],[],[]]
+        // now gently one step at a time following read_dcdheader.m
+        /*
+        if(url[0]==84){
+            i0=1
+        }else{
+            i0=2
+        }
+        */
+        aa=url // deleteme
+        console.log(url[0])
+        console.log('type:',(new TextDecoder()).decode(new Uint32Array(aa.slice(1,2))))
+        console.log('NSET:',url[2])
+        console.log((new TextDecoder()).decode(new Uint32Array(aa.slice(24,56))))
+        console.log('N:',url[67])
+        //url.slice(url[2]).forEach(function(v,i){
         url.forEach(function(v,i){
             xyz[i%3].push(v)
         })
