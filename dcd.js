@@ -1,4 +1,4 @@
-console.log('dcd.js loaded')
+console.log('dcd.js loaded :-)')
 
 DCD=function(url,fun){
     if(url){
